@@ -71,4 +71,4 @@ class Equipamento(BaseModel):
     )
 
     def __str__(self):
-        return self.nome
+        return f'{self.nome} - {self.tipo_esporte}'
