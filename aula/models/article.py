@@ -20,7 +20,11 @@ class Article(BaseModel):
         Reporter,
         on_delete=models.CASCADE,
     )
-    magazines = models.ManyToManyField(Magazine)
+    magazines = models.ManyToManyField(
+        Magazine, null=True, blank=True,
+        through="Publication",
+        through_fields=("article", "magazine")
+    )
 
     def __str__(self):
         return f'{self.name} by {self.reporter.name}'
