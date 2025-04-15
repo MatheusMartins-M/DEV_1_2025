@@ -1,6 +1,5 @@
 import random
 import string
-
 from django.core.validators import MinLengthValidator
 from django.db import models
 from .person import Person
@@ -8,7 +7,7 @@ from aula.models.base_model import BaseModel
 from aula.validators import CodValidator
 from aula.validators import validate_par
 from rest_framework.exceptions import ValidationError
-#from ..managers.exemplo import ExemploManager
+from ..managers.exemplo import ExemploManager
 
 class Exemplo(BaseModel):
 
@@ -21,7 +20,7 @@ class Exemplo(BaseModel):
     nome = models.CharField(max_length=15, validators=[MinLengthValidator(3)])
     people = models.ManyToManyField(Person, blank=True, null=True)
 
-    #objects = ExemploManager()
+    objects = ExemploManager()
 
     def __str__(self):
         return self.nome

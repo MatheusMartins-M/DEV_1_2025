@@ -1,3 +1,5 @@
+
+
 from django.db import models
 from aula.models.magazine import Magazine
 from aula.models.reporter import Reporter
