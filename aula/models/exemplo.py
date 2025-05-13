@@ -23,7 +23,7 @@ class Exemplo(BaseModel):
     objects = ExemploManager()
 
     def __str__(self):
-        return self.nome
+        return (f"{self.nome} - {self.cod}")
 
     #qualquer coisa que eu queria alterar nos dados antes de salvar
     def save(self, *args, **kargs):
