@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block main %}
+  {% if results %}
+    {% block title %}
+      <h1>Resultados da busca</h1>
+
+    {% endblock title %}
+
+    <div class ="list-group">
+      {% for model, result in results.items %}
+        {% for link, data in result %}
+          <a href="{{ link }}" class="list-group-item list-group-item-action text-left" aria-current="true">
+            <div class="d-flex w-100 justify-content-between text-left">
+              <h5 class="mb-1">Nome: {{ data.nome }}</h5>
+              <small>{{ model }}</small>
+            </div>
+            <p class="mb-1">Dados: {{ data.cod }}</p>
+          </a>
+        {% endfor %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <h2>Nenhum resultado atendeu a busca por '{{ query }}'</h2>
+
+  {% endif %}
+{% endblock main %}

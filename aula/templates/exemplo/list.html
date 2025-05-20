@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% block title %}
+        {% if exemplos %}
+            <h1>Lista de Exemplos</h1>
+        {% else %}
+            <h1>Exemplos não cadastrados</h1>
+    {% endif %}
+    {% endblock title %}
+
+    {% if exemplos %}
+        <table class="table table-hover">
+            <thead>
+                <th>#</th>
+                <th>Código</th>
+                <th>Nome</th>
+            </thead>
+            <tbody>
+            {% for exemplo in exemplos %}
+                <tr>
+                    <td>{{ exemplo.id }}</td>
+                    <td>{{ exemplo.cod }}</td>
+                    <td>{{ exemplo.nome }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock main %}
