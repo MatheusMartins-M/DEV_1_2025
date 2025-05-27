@@ -25,6 +25,12 @@
             <li><a class="dropdown-item" href="{% url 'aula:exemplo_function_list' %}">Exemplos</a></li>
           </ul>
         </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Contatos</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'class_contact' %}">Classe</a></li>
+          </ul>
+        </li>
 
       </ul>
       <form action="{% url 'Search' %}" method="get" class="d-flex" role="search">

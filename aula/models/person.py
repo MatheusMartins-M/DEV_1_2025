@@ -1,6 +1,7 @@
 from django.core.validators import MinLengthValidator, MaxLengthValidator
 from django.db import models
 from aula.models.base_model import BaseModel
+from ..managers.exemplo import ExemploManager
 
 class Person(BaseModel):
     name = models.CharField(
@@ -22,6 +23,8 @@ class Person(BaseModel):
         help_text= "Digite o CPF",
         verbose_name= "CPF",
     )
+
+    objects = ExemploManager()
 
     def __str__(self):
         return self.name

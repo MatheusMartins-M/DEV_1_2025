@@ -17,13 +17,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from DEV_1_2025.views import index
+from DEV_1_2025.views import index, ContactView
 from DEV_1_2025.views.search import SearchView
 
 urlpatterns = [
+    path('', index, name="index"),
     path('sistema', index, name="index"),
     path('admin/', admin.site.urls),
     path('aula/', include('aula.urls')),
     path('search/', SearchView.as_view(), name="Search"),
+    #path('function/contato/', contact, name='function_contact'),
+    path('classe/contato/', ContactView.as_view(), name='class_contact')
 
 ]

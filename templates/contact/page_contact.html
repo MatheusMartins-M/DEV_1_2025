@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block main %}
+  <h1>Formulário de Contato</h1>
+  </br>
+  <form id="contato" action="{% url 'class_contact' %}" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-sucess btn-lg" form="contato" value="Enviar">
+      <i class="bi bi-send"></i> Enviar </button>
+    <button type="reset" class="btn btn-outline-danger btn-lg" form="contato" value="Reset">
+      <i class="bi bi-arrow-clockwise"></i> Limpar </button>
+  </form>
+{% endblock main %}
