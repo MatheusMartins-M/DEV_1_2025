@@ -6,7 +6,6 @@ from rest_framework.exceptions import PermissionDenied
 
 from aula.models import Exemplo
 
-
 class SearchView(View):
     @staticmethod
     def get(request):
@@ -21,6 +20,7 @@ class SearchView(View):
             for exemplo in exemplos:
                 url = "" #reverse_lazy("aula:exemplo_classe_read", kwargs={"pk"})
                 resultados_exemplos.append((url, exemplo))
+
             resultados["Exemplo"] = resultados_exemplos
             context = {
                 'results': resultados,

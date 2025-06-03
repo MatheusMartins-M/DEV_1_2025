@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% block title %}
+      <h1>{{ exemplo.nome|capfirst }}</h1>
+    {% endblock title %}
+    {% block content %}
+      <div class="content">
+        <div class="row">
+          <strong>Código: </strong> <p>{{ exemplo.cod }}</p>
+          <strong>Nome: </strong> <p>{{ exemplo.nome|capfirst }}</p>
+        </div>
+      </div>
+      <div>
+        <h3><strong>Essa operação é irreversível! Selecione com cuidado</strong></h3>
+
+        <form id="exemplo"
+              action="{% url 'aula:exemplo_classe_delete' exemplo.id %}"
+              method="post">
+          {% csrf_token %}
+          <input type="hidden" id="exemplo_id" name="exemplo_id" value="{{ exemplo.id }}">
+          <button type="submit" class="btn btn-outline-danger btn-lg" form="exemplo"
+                  value="Deletar" ><i class="bi bi-trash"></i> Sim, deletar</button>
+          <a class="btn btn-outline-light btn-lg" role="button" href="{% url 'aula:exemplo_class_list' %}">
+          <i class="bi bi-x"></i>  Cancelar</a>
+        </form>
+      </div>
+    {% endblock content %}
+{% endblock main %}

@@ -9,14 +9,15 @@ urlpatterns = [
     path('funcao/saudacao', views_funcoes.saudacao, name="Saudacao"),
     path('funcao/<str:name>', views_funcoes.nome, name="nome"),
     path('exemplo/function', views_funcoes.exemplo_list, name="exemplo_function_list"),
-
+    path('exemplo/function/read/<int:pk>', views_funcoes.exemplo_detail, name="exemplo_function_read"),                 #<int:pk> e
+    path('exemplo/function/delete/<int:exemplo_id>', views_funcoes.delete, name="exemplo_function_delete"),             #<int:exemplo_id> são a mesma coisa, não importa o nome
 
     path('classe/teste', PrimeiraView.as_view(), name="Primeira_View_Classe"),
     path('classe/saudacao', SaudacaoView.as_view(), name="Saudacao_View_Classe"),
     path('classe/<str:name>', NomeView.as_view(), name="Nome_View_Classe"),
     path('exemplo/classe', ExemploListView.as_view(), name="exemplo_class_list"),
-
-
+    path('exemplo/classe/read/<int:pk>', ExemploDetailView.as_view(), name="exemplo_classe_read"),
+    path('exemplo/classe/delete/<int:pk>', ExemploDeleteView.as_view(), name="exemplo_classe_delete"),
 
 
 ]

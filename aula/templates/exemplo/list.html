@@ -15,6 +15,8 @@
                 <th>#</th>
                 <th>Código</th>
                 <th>Nome</th>
+                <th>Ações Funções</th>
+                <th>Ações Classes</th>
             </thead>
             <tbody>
             {% for exemplo in exemplos %}
@@ -22,7 +24,62 @@
                     <td>{{ exemplo.id }}</td>
                     <td>{{ exemplo.cod }}</td>
                     <td>{{ exemplo.nome }}</td>
+                    <td>
+                        <div>
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Funções"
+                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                                <i class="bi bi-card-list"></i> </a>
+
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Funções"
+                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                                <i class="bi bi-pencil-square"></i> </a>
+
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Funções"
+                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                                <i class="bi bi-arrow-repeat"></i> </a>
+
+                            <a class="btn btn-outline-danger btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Funções"
+                               href="{% url 'aula:exemplo_function_delete' exemplo.id %}">
+                                <i class="bi bi-trash"></i> </a>
+                        </div>
+                    </td>
+                    <td>
+                        <div>
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Classe"
+                               href="{% url 'aula:exemplo_classe_read' exemplo.id %}">
+                                <i class="bi bi-card-list"></i> </a>
+
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Classe"
+                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                                <i class="bi bi-pencil-square"></i> </a>
+
+                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Classe"
+                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                                <i class="bi bi-arrow-repeat"></i> </a>
+
+                            <a class="btn btn-outline-danger btn-lg" role="button"
+                               data-bs-toggle="tooltip" data-bs-placement="top"
+                               title="Detalhar com Classe"
+                               href="{% url 'aula:exemplo_classe_delete' exemplo.id %}">
+                                <i class="bi bi-trash"></i> </a>
+                        </div>
+                    </td>
                 </tr>
+
             {% endfor %}
             </tbody>
         </table>
