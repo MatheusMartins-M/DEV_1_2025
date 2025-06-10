@@ -19,6 +19,18 @@
                 <th>Ações Classes</th>
             </thead>
             <tbody>
+            <a class="btn btn-outline-success btn-lg" role="button"
+               data-bs-toggle="tooltip" data-bs-placement="top"
+               title="Criar com Funções"
+               href="{% url 'aula:exemplo_function_create' %}">
+                <i class="bi bi-plus"></i> </a>
+
+            <a class="btn btn-outline-success btn-lg" role="button" style="margin: 0 15px"
+               data-bs-toggle="tooltip" data-bs-placement="top"
+               title="Criar com Classe"
+               href="{% url 'aula:exemplo_classe_create' %}">
+                <i class="bi bi-plus"></i> </a>
+
             {% for exemplo in exemplos %}
                 <tr>
                     <td>{{ exemplo.id }}</td>
@@ -26,54 +38,54 @@
                     <td>{{ exemplo.nome }}</td>
                     <td>
                         <div>
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-light btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
                                title="Detalhar com Funções"
                                href="{% url 'aula:exemplo_function_read' exemplo.id %}">
                                 <i class="bi bi-card-list"></i> </a>
 
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-primary btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Funções"
-                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                               title="Editar com Funções"
+                               href="{% url 'aula:exemplo_function_update' exemplo.id %}">
                                 <i class="bi bi-pencil-square"></i> </a>
 
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-warning btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Funções"
-                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                               title="Gerar codigo com Funções"
+                               href="{% url 'aula:exemplo_function_generate_code' exemplo.id %}">
                                 <i class="bi bi-arrow-repeat"></i> </a>
 
                             <a class="btn btn-outline-danger btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Funções"
+                               title="Deletar com Funções"
                                href="{% url 'aula:exemplo_function_delete' exemplo.id %}">
                                 <i class="bi bi-trash"></i> </a>
                         </div>
                     </td>
                     <td>
                         <div>
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-light btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
                                title="Detalhar com Classe"
                                href="{% url 'aula:exemplo_classe_read' exemplo.id %}">
                                 <i class="bi bi-card-list"></i> </a>
 
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-primary btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Classe"
-                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                               title="Editar com Funções"
+                               href="{% url 'aula:exemplo_classe_update' exemplo.id %}">
                                 <i class="bi bi-pencil-square"></i> </a>
 
-                            <a class="btn btn-outline-secondary btn-lg" role="button"
+                            <a class="btn btn-outline-warning btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Classe"
-                               href="{% url 'aula:exemplo_function_read' exemplo.id %}">
+                               title="Gerar codigo com Classe"
+                               href="{% url 'aula:exemplo_classe_generate_code' exemplo.id %}">
                                 <i class="bi bi-arrow-repeat"></i> </a>
 
                             <a class="btn btn-outline-danger btn-lg" role="button"
                                data-bs-toggle="tooltip" data-bs-placement="top"
-                               title="Detalhar com Classe"
+                               title="Deletar com Classe"
                                href="{% url 'aula:exemplo_classe_delete' exemplo.id %}">
                                 <i class="bi bi-trash"></i> </a>
                         </div>

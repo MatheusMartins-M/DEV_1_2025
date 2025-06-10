@@ -2,7 +2,6 @@ from django.core.validators import ValidationError
 from django.utils.deconstruct import deconstructible
 from django.utils.translation import gettext_lazy as _
 
-
 @deconstructible
 class CodValidator:
     def __init__(self, cod="0000000000"):

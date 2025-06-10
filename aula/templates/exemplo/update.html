@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    {% block title %}
+      <h1>Editar Exemplo</h1>
+    {% endblock title %}
+    {% block content %}
+      <form id="exemplo" action="{% url 'aula:exemplo_classe_update' exemplo.id %}" method="post">
+              {% csrf_token %}
+                  {% for field in form %}
+                      <div class="mb-3">
+                          {{ field.label_tag }} {{ field }}
+                          {% if field.help_text %}
+                              <div class="form_text">{{ field.help_text|safe }}</div>
+                          {% endif %}
+                          <div class="invalid-feedback">{{ field.errors }}</div>
+                      </div>
+                  {% endfor %}
+            <button type="submit" class="btn btn-outline-success btn-lg" form="exemplo"
+                    value="Salvar" ><i class="bi bi-floppy"></i> Salvar </button>
+
+            <a class="btn btn-outline-light btn-lg" role="button" href="{% url 'aula:exemplo_class_list' %}">
+              <i class="bi bi-arrow-left"></i> Voltar </a>
+          </form>
+    {% endblock content %}
+{% endblock main%}
