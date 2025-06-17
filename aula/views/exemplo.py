@@ -1,13 +1,22 @@
 import random
 import string
-
+from django.contrib.auth.decorators import login_required, permission_required
+from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin, AccessMixin
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
-from django.views.generic import DeleteView, UpdateView, CreateView
-
+from django.views.generic import DeleteView, UpdateView, CreateView, DetailView
 from aula.forms import ExemploForm
-from aula.models import Exemplo, Person
+from aula.models import Exemplo
+
+@login_required
+@permission_required("aula.view_exemplo", raise_exception=True)
+def exemplo_detail(request, pk):
+    exemplo = Exemplo.objects.get(id=pk)
+    context = {
+        'exemplo': exemplo,
+    }
+    return render(request, 'exemplo/read.html', context)
 
 def exemplo_list(request):
     exemplos = Exemplo.objects.all()
@@ -17,13 +26,8 @@ def exemplo_list(request):
 
     return render(request, 'exemplo/list.html', context)
 
-def exemplo_detail(request, pk):
-    exemplo = Exemplo.objects.get(id=pk)
-    context = {
-        'exemplo': exemplo,
-    }
-    return render(request, 'exemplo/read.html', context)
-
+@login_required
+@permission_required("aula.delete_exemplo")
 def delete(request, exemplo_id):
     exemplo = get_object_or_404(Exemplo, pk=exemplo_id)
     try:
@@ -41,6 +45,8 @@ def delete(request, exemplo_id):
         context = {}
         return render(request, 'exemplo/list.html', context)
 
+@login_required
+@permission_required("aula.add_exemplo")
 def create(request):
     if request.method == "POST":
         form = ExemploForm(request.POST)
@@ -54,6 +60,8 @@ def create(request):
     }
     return render (request, 'exemplo/create.html', context)
 
+@login_required
+@permission_required("aula.change_exemplo")
 def update(request, exemplo_id):
     exemplo = get_object_or_404(Exemplo, pk=exemplo_id)
     if request.method == "POST":
@@ -69,6 +77,8 @@ def update(request, exemplo_id):
     }
     return render (request, 'exemplo/update.html', context)
 
+@login_required
+@permission_required("aula.generate_code_exemplo")
 def generate_code(request, exemplo_id):
     exemplo = get_object_or_404(Exemplo, pk=exemplo_id)
     try:
@@ -81,6 +91,10 @@ def generate_code(request, exemplo_id):
         print(f"Erro ao gerar código para exemplo {exemplo}")
         return redirect('aula:exemplo_function_list')
 
+#=======================================================================================================================
+#================================================ CLASSES ==============================================================
+#=======================================================================================================================
+
 class ExemploListView(View):
     @staticmethod
     def get (request):
@@ -91,7 +105,7 @@ class ExemploListView(View):
 
         return render(request, 'exemplo/list.html', context)
 
-class ExemploDetailView(View):
+class ExemploDetailViewClasse(View):
     @staticmethod
     def get (request, pk):
         exemplo = Exemplo.objects.get(id=pk)
@@ -152,7 +166,10 @@ class ExemploUpdateViewClass(View):
         }
         return render (request, 'exemplo/update.html', context)
 
-class ExemploGenerateCodeView(View):
+class ExemploGenerateCodeView(LoginRequiredMixin, PermissionRequiredMixin, View):
+    login_url = reverse_lazy('accounts:login')
+    permission_required = 'aula.generate_code_exemplo'
+
     @staticmethod
     def get(request, pk):
         exemplo = get_object_or_404(Exemplo, pk=pk)
@@ -166,22 +183,36 @@ class ExemploGenerateCodeView(View):
             print(f"Erro ao gerar código para exemplo {exemplo}")
             return redirect('aula:exemplo_function_list')
 
-class ExemploDeleteView(DeleteView):
+class ExemploDetailView(LoginRequiredMixin, PermissionRequiredMixin, DetailView):
+    model = Exemplo
+    fields = '__all__'
+    template_name = "exemplo/read.html"
+    success_url = reverse_lazy('aula:exemplo_class_list')
+    permission_required = 'aula.view_exemplo'
+    raise_exception = True
+
+class ExemploDeleteView(LoginRequiredMixin, PermissionRequiredMixin, AccessMixin, DeleteView):
     model = Exemplo
     fields = '__all__'
     template_name = "exemplo/delete.html"
     success_url = reverse_lazy('aula:exemplo_class_list')
+    permission_required = 'aula.delete_exemplo'
+    raise_exception = True
 
-class ExemploUpdateView(UpdateView):
+class ExemploUpdateView(LoginRequiredMixin, PermissionRequiredMixin, AccessMixin, UpdateView):
     model = Exemplo
     #fields = '__all__'
     form_class = ExemploForm
     template_name = "exemplo/update.html"
     success_url = reverse_lazy('aula:exemplo_class_list')
+    permission_required = 'aula.change_exemplo'
+    raise_exception = True
 
-class ExemploCreateView(CreateView):
+class ExemploCreateView(LoginRequiredMixin, PermissionRequiredMixin, AccessMixin,  CreateView):
     model = Exemplo
     #fields = '__all__'
     form_class = ExemploForm
     template_name = "exemplo/create.html"
     success_url = reverse_lazy('aula:exemplo_class_list')
+    permission_required = 'aula.add_exemplo'
+    raise_exception = True

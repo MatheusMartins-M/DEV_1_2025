@@ -22,6 +22,12 @@ class Exemplo(BaseModel):
 
     objects = ExemploManager()
 
+    class Meta:
+        permissions = [
+            ('generate_code_exemplo', "can generate new codes")
+        ]
+
+
     def __str__(self):
         return (f"{self.nome} - {self.cod}")
 

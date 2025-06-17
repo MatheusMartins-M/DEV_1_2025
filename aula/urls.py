@@ -24,4 +24,5 @@ urlpatterns = [
     path('exemplo/classe/create', ExemploCreateView.as_view(), name="exemplo_classe_create"),
     path('exemplo/classe/update/<int:pk>', ExemploUpdateView.as_view(), name="exemplo_classe_update"),
     path('exemplo/classe/gerar_codigo/<int:pk>', ExemploGenerateCodeView.as_view(), name="exemplo_classe_generate_code"),
+
 ]
